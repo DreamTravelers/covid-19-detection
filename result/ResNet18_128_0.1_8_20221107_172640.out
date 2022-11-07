@@ -1,0 +1,28 @@
+model : ResNet18
+embed_dim : 128
+lr : 0.1
+batch_size : 8
+epochs : 100
+2022-11-07 17:26:44.348811 Training:  Epoch 0, Batch: 0, Loss: 0.874452 , The best test Accuracy ：0.000000
+2022-11-07 17:26:45.923303 Training:  Epoch 0, Batch: 10, Loss: 10.427027 , The best test Accuracy ：0.000000
+2022-11-07 17:26:47.379408 Training:  Epoch 0, Batch: 20, Loss: 2.224726 , The best test Accuracy ：0.000000
+2022-11-07 17:26:48.735111 Training:  Epoch 0, Batch: 30, Loss: 5.083116 , The best test Accuracy ：0.000000
+2022-11-07 17:26:50.504449 Training:  Epoch 0, Batch: 40, Loss: 1.261676 , The best test Accuracy ：0.000000
+2022-11-07 17:26:51.545383 Training:  Epoch 0, Batch: 50, Loss: 1.287234 , The best test Accuracy ：0.000000
+2022-11-07 17:26:53.587007 Training:  Epoch 0, Batch: 60, Loss: 0.950877 , The best test Accuracy ：0.000000
+2022-11-07 17:26:55.281789 Training:  Epoch 0, Batch: 70, Loss: 1.107812 , The best test Accuracy ：0.000000
+2022-11-07 17:26:56.859452 Training:  Epoch 0, Batch: 80, Loss: 0.770225 , The best test Accuracy ：0.000000
+2022-11-07 17:26:58.501417 Training:  Epoch 0, Batch: 90, Loss: 1.560773 , The best test Accuracy ：0.000000
+Test Avg. Loss: 0.972832, correct / total : 110.000000 / 185.000000 , Accuracy: 0.594595
+2022-11-07 17:27:04.352000 Training:  Epoch 1, Batch: 0, Loss: 0.842817 , The best test Accuracy ：0.594595
+2022-11-07 17:27:06.072274 Training:  Epoch 1, Batch: 10, Loss: 1.202644 , The best test Accuracy ：0.594595
+2022-11-07 17:27:07.412810 Training:  Epoch 1, Batch: 20, Loss: 1.105235 , The best test Accuracy ：0.594595
+2022-11-07 17:27:08.749435 Training:  Epoch 1, Batch: 30, Loss: 0.999220 , The best test Accuracy ：0.594595
+2022-11-07 17:27:11.102356 Training:  Epoch 1, Batch: 40, Loss: 1.195216 , The best test Accuracy ：0.594595
+2022-11-07 17:27:13.231595 Training:  Epoch 1, Batch: 50, Loss: 0.808876 , The best test Accuracy ：0.594595
+2022-11-07 17:27:14.916652 Training:  Epoch 1, Batch: 60, Loss: 0.686382 , The best test Accuracy ：0.594595
+2022-11-07 17:27:17.073433 Training:  Epoch 1, Batch: 70, Loss: 0.897359 , The best test Accuracy ：0.594595
+2022-11-07 17:27:19.311247 Training:  Epoch 1, Batch: 80, Loss: 0.925851 , The best test Accuracy ：0.594595
+2022-11-07 17:27:20.435028 Training:  Epoch 1, Batch: 90, Loss: 0.942090 , The best test Accuracy ：0.594595
+Test Avg. Loss: 1.056374, correct / total : 109.000000 / 185.000000 , Accuracy: 0.589189
+2022-11-07 17:27:25.989572 Training:  Epoch 2, Batch: 0, Loss: 0.965959 , The best test Accuracy ：0.594595

@@ -6,14 +6,10 @@
 
 """
 from datetime import datetime
-from math import sqrt
-
-import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error
 from torch import nn
 
 
-def train(model, _train, optimizer, epoch, acc, device):
+def train(model, _train, optimizer, epoch, acc, device, save_result, st):
     model.train()
     loss_list, batch_list = [], []
     criterion = nn.CrossEntropyLoss()
@@ -31,8 +27,11 @@ def train(model, _train, optimizer, epoch, acc, device):
         batch_list.append(i + 1)
 
         if i % 10 == 0:
-            print('%s Training:  Epoch %d, Batch: %d, Loss: %f , The best test Accuracy ：%f' % (
-                datetime.now(), epoch, i, loss.detach().cpu().item(), acc))
+            p_str = '%s Training:  Epoch %d, Batch: %d, Loss: %f , The best test Accuracy ：%f' % (
+                datetime.now(), epoch, i, loss.detach().cpu().item(), acc)
+            print(p_str)
+            if save_result:
+                st.save2file(p_str)
 
         loss.backward()
         optimizer.step()
@@ -40,7 +39,7 @@ def train(model, _train, optimizer, epoch, acc, device):
     return 0
 
 
-def test(model, test_loader, device):
+def test(model, test_loader, device, save_result, st):
     criterion = nn.CrossEntropyLoss()
     model.eval()
     total_correct = 0
@@ -54,9 +53,11 @@ def test(model, test_loader, device):
         count += len(labels)
 
     avg_loss /= len(test_loader)
-    print(
-        'Test Avg. Loss: %f, correct / total : %f / %f , Accuracy: %f' % (
+    p_str = 'Test Avg. Loss: %f, correct / total : %f / %f , Accuracy: %f' % (
             avg_loss.detach().cpu().item(), float(total_correct), count,
-            float(total_correct) / count))
+            float(total_correct) / count)
+    print(p_str)
+    if save_result:
+        st.save2file(p_str)
 
     return float(total_correct) / count

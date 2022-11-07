@@ -1,34 +1,46 @@
 # -*- coding: utf-8 -*-
 import argparse
 import os
+import time
 
 import torch
 import torch.utils.data
-from torch import nn, optim
+from torch import optim
 
 from ImageDataset import ImageDataset
 from predication import train, test
 from modal.resnet import ResNet18
-from modal.vgg import vgg16
+from tool.save2File import SaveTool
 
 
 def main():
-    parser = argparse.ArgumentParser(description="imageClass")
-    parser.add_argument('--embed_dim', type=int, default=128, help='image size')  # 32 128 256 512
-    parser.add_argument('--lr', type=int, default=0.1, help='learning rate')  # 0.1 0.01 0.001 0.0001
+    parser = argparse.ArgumentParser(description="covid-19-detection")
+    parser.add_argument('--embed_dim', type=int, default=128, help='image size')
+    parser.add_argument('--lr', type=int, default=0.1, help='learning rate')
     parser.add_argument('--epochs', type=int, default=100, help='max epoch')
-    parser.add_argument('--weight_decay', type=int, default=0.0001, help='L2 weight decay')  # 0.0001 0.0002 0.0005 0.001
-    parser.add_argument('--batch_size', type=int, default=8, help='batch_size')  # 8 16 32 464
+    parser.add_argument('--weight_decay', type=int, default=0.0001, help='L2 weight decay')
+    parser.add_argument('--batch_size', type=int, default=8, help='batch_size')
     parser.add_argument('--test_batch_size', type=int, default=8, help='input batch size for testing')
     parser.add_argument('--use_cuda', type=bool, default=True, help='cuda')
+    parser.add_argument('--save_result', type=bool, default=True, help='save result')
+    parser.add_argument('--save_modal', type=bool, default=False, help='save result')
 
     args = parser.parse_args()
+    modal = "ResNet18"
 
-    print("model", "vgg16")
+    now_time = time.strftime('%Y%m%d_%H%M%S', time.localtime())
+    info = str(args.embed_dim) + "_" + str(args.lr) + "_" + str(args.batch_size)
+    file_name = modal + "_" + info + "_" + now_time + ".out"
+
+    st = SaveTool(file_name)
+    print("model", modal)
     print("embed_dim", str(args.embed_dim))
     print("lr", str(args.lr))
     print("batch_size", str(args.batch_size))
     print("epochs", str(args.epochs))
+    if args.save_result:
+        st.save2file("model : " + modal, "embed_dim : " + str(args.embed_dim), "lr : " + str(args.lr),
+                     "batch_size : " + str(args.batch_size), "epochs : " + str(args.epochs))
 
     data_path = './data/'
     device = torch.device("cuda" if args.use_cuda else "cpu")
@@ -52,18 +64,22 @@ def main():
     acc = 0
 
     for epoch in range(args.epochs + 1):
-        train(net, _train, optimizer, epoch, acc, device)
-        test_acc = test(net, _test, device)
+        train(net, _train, optimizer, epoch, acc, device, args.save_result, st)
+        test_acc = test(net, _test, device, args.save_result, st)
         scheduler.step()
 
         if test_acc > acc:
             acc = test_acc
 
-            if not os.path.isdir("./checkpoint"):
-                os.mkdir("./checkpoint")
-            torch.save(net.state_dict(), './checkpoint/vgg16.pth')
+            if args.save_modal:
+                if not os.path.isdir("./checkpoint"):
+                    os.mkdir("./checkpoint")
+                torch.save(net.state_dict(), './checkpoint/'+modal+'.pth')
 
-    print('The best Accuracy ：%.5f' % acc)
+    p_str = 'The best Accuracy ：%.5f' % acc
+    print(p_str)
+    if args.save_result:
+        st.save2file(p_str)
 
 
 if __name__ == '__main__':
