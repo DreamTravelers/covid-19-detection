@@ -20,10 +20,10 @@ def main():
     parser.add_argument('--lr', type=int, default=0.001, help='learning rate')
     parser.add_argument('--epochs', type=int, default=100, help='max epoch')
     parser.add_argument('--weight_decay', type=int, default=5e-4, help='L2 weight decay')
-    parser.add_argument('--batch_size', type=int, default=128, help='batch_size')  # 8 16 32 464
-    parser.add_argument('--test_batch_size', type=int, default=128, help='input batch size for testing')
+    parser.add_argument('--batch_size', type=int, default=8, help='batch_size')  # 8 16 32 464
+    parser.add_argument('--test_batch_size', type=int, default=8, help='input batch size for testing')
     parser.add_argument('--use_cuda', type=bool, default=False, help='cuda')
-    parser.add_argument('--save_result', type=bool, default=False, help='save result')
+    parser.add_argument('--save_result', type=bool, default=True, help='save result')
     parser.add_argument('--save_modal', type=bool, default=False, help='save result')
 
     args = parser.parse_args()

@@ -1,0 +1,15 @@
+model : vgg_random_TextLstm
+embed_dim : 128
+lr : 0.001
+batch_size : 8
+epochs : 100
+2022-11-07 18:11:27.273140 Training:  Epoch 0, Batch: 0, Loss: 1.099836 , The best test Accuracy ：0.000000
+2022-11-07 18:11:33.118165 Training:  Epoch 0, Batch: 10, Loss: 0.801665 , The best test Accuracy ：0.000000
+2022-11-07 18:11:38.622210 Training:  Epoch 0, Batch: 20, Loss: 1.301445 , The best test Accuracy ：0.000000
+2022-11-07 18:11:43.092920 Training:  Epoch 0, Batch: 30, Loss: 1.051445 , The best test Accuracy ：0.000000
+2022-11-07 18:11:49.284812 Training:  Epoch 0, Batch: 40, Loss: 0.801445 , The best test Accuracy ：0.000000
+2022-11-07 18:11:53.422727 Training:  Epoch 0, Batch: 50, Loss: 0.801445 , The best test Accuracy ：0.000000
+2022-11-07 18:11:58.037190 Training:  Epoch 0, Batch: 60, Loss: 1.176445 , The best test Accuracy ：0.000000
+2022-11-07 18:12:02.883579 Training:  Epoch 0, Batch: 70, Loss: 1.176445 , The best test Accuracy ：0.000000
+Test Avg. Loss: 0.952761, correct / total : 91.000000 / 148.000000 , Accuracy: 0.614865
+2022-11-07 18:12:13.461063 Training:  Epoch 1, Batch: 0, Loss: 0.801445 , The best test Accuracy ：0.614865
