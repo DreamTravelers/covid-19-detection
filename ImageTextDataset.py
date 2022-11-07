@@ -13,19 +13,24 @@ import torch
 from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
-
+from transformers import BertTokenizer
+import  transformers as tfs
 
 class ImageDataset(Dataset):
     def __init__(self, files, process, size):
         super(ImageDataset, self).__init__()
 
-        with open(files, 'r') as f:
-            self.imgs = list(map(lambda line: line.strip().split('&&&'), f))
+        with open(files, 'rb') as f:
+            self.imgs = list(map(lambda line: line.decode().strip().split('&&&'), f))
+        # 清洗一下样本
+        self.imgs = [s_list for s_list in self.imgs if s_list[2]]
 
         if process == 'train':
             self.transform = get_train_transform(size=size)
         else:
             self.transform = get_test_transform(size=size)
+        self.tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking')
+        self.max_len = 40
 
     def __getitem__(self, item):
         label, path, desc = self.imgs[item]
@@ -42,7 +47,11 @@ class ImageDataset(Dataset):
         img = img.resize((32, 32), Image.BILINEAR)
         img = self.transform(img)
 
-        return img, torch.from_numpy(np.array(int(label))).float(),desc
+        text_idx = self.tokenizer(desc, max_length=self.max_len, add_special_tokens=False
+                       , truncation=True, padding='max_length',
+                       return_tensors='pt')
+
+        return img, torch.from_numpy(np.array(int(label))).float(),text_idx['input_ids']
 
     def __len__(self):
         return len(self.imgs)
@@ -86,7 +95,11 @@ class RandomRotate(object):
 def get_train_transform(size=0):
     train_transform = transforms.Compose([
         # Resize((int(size * (256 / 224)), int(size * (256 / 224)))),
-        transforms.RandomHorizontalFlip(),
+        # transforms.RandomHorizontalFlip(),
+        transforms.RandomRotation(90,interpolation=False,expand=False,center=None,fill=None),
+        transforms.RandomVerticalFlip(p=0.5),
+        transforms.RandomHorizontalFlip(p=0.5),
+        # transforms.Resize()
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010]),
     ])
@@ -99,3 +112,4 @@ def get_test_transform(size=0):
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010]),
     ])
+

@@ -6,6 +6,10 @@
 
 """
 from datetime import datetime
+from math import sqrt
+
+import numpy as np
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 from torch import nn
 
 
@@ -19,9 +23,9 @@ def train(model, _train, optimizer, epoch, acc, device, save_result, st):
 
         optimizer.zero_grad()
 
-        output = model(train_img.to(device))
+        output = model(train_img, desc.squeeze(1))
 
-        loss = criterion(output.to(device), train_label.long().to(device))
+        loss = criterion(output[0].to(device), train_label.long().to(device))
 
         loss_list.append(loss.detach().cpu().item())
         batch_list.append(i + 1)
@@ -35,7 +39,6 @@ def train(model, _train, optimizer, epoch, acc, device, save_result, st):
 
         loss.backward()
         optimizer.step()
-
     return 0
 
 
@@ -46,16 +49,16 @@ def test(model, test_loader, device, save_result, st):
     count = 0
     avg_loss = 0.0
     for i, (images, labels, desc) in enumerate(test_loader):
-        output = model(images.to(device))
+        output = model(images.to(device), desc.squeeze())
         avg_loss += criterion(output.detach().cpu(), labels.long().detach().cpu()).sum()
-        pred = output.detach().max(1)[1]
+        pred = output.detach().argmax(1)
         total_correct += pred.eq(labels.to(device).view_as(pred.to(device))).sum()
         count += len(labels)
 
     avg_loss /= len(test_loader)
     p_str = 'Test Avg. Loss: %f, correct / total : %f / %f , Accuracy: %f' % (
-            avg_loss.detach().cpu().item(), float(total_correct), count,
-            float(total_correct) / count)
+        avg_loss.detach().cpu().item(), float(total_correct), count,
+        float(total_correct) / count)
     print(p_str)
     if save_result:
         st.save2file(p_str)

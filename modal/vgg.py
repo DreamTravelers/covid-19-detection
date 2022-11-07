@@ -5,7 +5,7 @@ import torch.nn.init as init
 
 __all__ = [
     'VGG', 'vgg11', 'vgg11_bn', 'vgg13', 'vgg13_bn', 'vgg16', 'vgg16_bn',
-    'vgg19_bn', 'vgg19',
+    'vgg19_bn', 'vgg19', 'vgg_random'
 ]
 
 
@@ -19,12 +19,12 @@ class VGG(nn.Module):
         self.features = features
         self.classifier = nn.Sequential(
             nn.Dropout(),
-            nn.Linear(512, 512),
+            nn.Linear(512, 256),
             nn.ReLU(True),
             nn.Dropout(),
-            nn.Linear(512, 512),
+            nn.Linear(256, 128),
             nn.ReLU(True),
-            nn.Linear(512, 3),
+            nn.Linear(128, 128),
         )
         # Initialize weights
         for m in self.modules():
@@ -62,7 +62,12 @@ cfg = {
     'D': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512, 'M'],
     'E': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M',
           512, 512, 512, 512, 'M'],
+    'F': [512, 'M', 'M', 'M', 'M', 'M']
 }
+
+
+def vgg_random():
+    return VGG(make_layers(cfg['F']))
 
 
 def vgg11():
@@ -103,3 +108,7 @@ def vgg19():
 def vgg19_bn():
     """VGG 19-layer model (configuration 'E') with batch normalization"""
     return VGG(make_layers(cfg['E'], batch_norm=True))
+
+
+if __name__ == '__main__':
+    vgg11()
