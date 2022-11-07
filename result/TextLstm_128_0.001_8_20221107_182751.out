@@ -1,0 +1,60 @@
+model : TextLstm
+embed_dim : 128
+lr : 0.001
+batch_size : 8
+epochs : 100
+2022-11-07 18:28:02.405297 Training:  Epoch 0, Batch: 0, Loss: 1.102134 , The best test Accuracy ：0.000000
+2022-11-07 18:28:06.814410 Training:  Epoch 0, Batch: 10, Loss: 0.922379 , The best test Accuracy ：0.000000
+2022-11-07 18:28:11.615280 Training:  Epoch 0, Batch: 20, Loss: 0.823540 , The best test Accuracy ：0.000000
+2022-11-07 18:28:16.346397 Training:  Epoch 0, Batch: 30, Loss: 0.819892 , The best test Accuracy ：0.000000
+2022-11-07 18:28:20.983583 Training:  Epoch 0, Batch: 40, Loss: 0.979930 , The best test Accuracy ：0.000000
+2022-11-07 18:28:25.905311 Training:  Epoch 0, Batch: 50, Loss: 0.585389 , The best test Accuracy ：0.000000
+2022-11-07 18:28:31.499941 Training:  Epoch 0, Batch: 60, Loss: 0.688352 , The best test Accuracy ：0.000000
+2022-11-07 18:28:35.214598 Training:  Epoch 0, Batch: 70, Loss: 0.788374 , The best test Accuracy ：0.000000
+Test Avg. Loss: 0.767492, correct / total : 102.000000 / 148.000000 , Accuracy: 0.689189
+2022-11-07 18:28:44.312010 Training:  Epoch 1, Batch: 0, Loss: 0.459274 , The best test Accuracy ：0.689189
+2022-11-07 18:28:49.750877 Training:  Epoch 1, Batch: 10, Loss: 0.255556 , The best test Accuracy ：0.689189
+2022-11-07 18:28:55.633736 Training:  Epoch 1, Batch: 20, Loss: 0.296241 , The best test Accuracy ：0.689189
+2022-11-07 18:29:00.523596 Training:  Epoch 1, Batch: 30, Loss: 0.371552 , The best test Accuracy ：0.689189
+2022-11-07 18:29:04.831609 Training:  Epoch 1, Batch: 40, Loss: 0.503046 , The best test Accuracy ：0.689189
+2022-11-07 18:29:09.639608 Training:  Epoch 1, Batch: 50, Loss: 0.968309 , The best test Accuracy ：0.689189
+2022-11-07 18:29:14.695552 Training:  Epoch 1, Batch: 60, Loss: 0.450792 , The best test Accuracy ：0.689189
+2022-11-07 18:29:18.931608 Training:  Epoch 1, Batch: 70, Loss: 0.470581 , The best test Accuracy ：0.689189
+Test Avg. Loss: 0.605554, correct / total : 112.000000 / 148.000000 , Accuracy: 0.756757
+2022-11-07 18:29:26.562444 Training:  Epoch 2, Batch: 0, Loss: 0.216014 , The best test Accuracy ：0.756757
+2022-11-07 18:29:30.845346 Training:  Epoch 2, Batch: 10, Loss: 0.277860 , The best test Accuracy ：0.756757
+2022-11-07 18:29:35.401343 Training:  Epoch 2, Batch: 20, Loss: 0.185264 , The best test Accuracy ：0.756757
+2022-11-07 18:29:40.029588 Training:  Epoch 2, Batch: 30, Loss: 0.923669 , The best test Accuracy ：0.756757
+2022-11-07 18:29:45.335608 Training:  Epoch 2, Batch: 40, Loss: 0.128334 , The best test Accuracy ：0.756757
+2022-11-07 18:29:49.825108 Training:  Epoch 2, Batch: 50, Loss: 1.126816 , The best test Accuracy ：0.756757
+2022-11-07 18:29:53.665149 Training:  Epoch 2, Batch: 60, Loss: 0.497147 , The best test Accuracy ：0.756757
+2022-11-07 18:29:57.999896 Training:  Epoch 2, Batch: 70, Loss: 0.523020 , The best test Accuracy ：0.756757
+Test Avg. Loss: 0.489445, correct / total : 120.000000 / 148.000000 , Accuracy: 0.810811
+2022-11-07 18:30:05.916058 Training:  Epoch 3, Batch: 0, Loss: 0.113914 , The best test Accuracy ：0.810811
+2022-11-07 18:30:11.759928 Training:  Epoch 3, Batch: 10, Loss: 0.313966 , The best test Accuracy ：0.810811
+2022-11-07 18:30:16.135827 Training:  Epoch 3, Batch: 20, Loss: 0.355426 , The best test Accuracy ：0.810811
+2022-11-07 18:30:20.663934 Training:  Epoch 3, Batch: 30, Loss: 0.487041 , The best test Accuracy ：0.810811
+2022-11-07 18:30:24.782673 Training:  Epoch 3, Batch: 40, Loss: 0.076265 , The best test Accuracy ：0.810811
+2022-11-07 18:30:29.174312 Training:  Epoch 3, Batch: 50, Loss: 0.026211 , The best test Accuracy ：0.810811
+2022-11-07 18:30:33.793177 Training:  Epoch 3, Batch: 60, Loss: 0.068095 , The best test Accuracy ：0.810811
+2022-11-07 18:30:37.468795 Training:  Epoch 3, Batch: 70, Loss: 0.068358 , The best test Accuracy ：0.810811
+Test Avg. Loss: 0.509467, correct / total : 121.000000 / 148.000000 , Accuracy: 0.817568
+2022-11-07 18:30:45.009914 Training:  Epoch 4, Batch: 0, Loss: 0.235166 , The best test Accuracy ：0.817568
+2022-11-07 18:30:49.331114 Training:  Epoch 4, Batch: 10, Loss: 0.020298 , The best test Accuracy ：0.817568
+2022-11-07 18:30:54.383123 Training:  Epoch 4, Batch: 20, Loss: 0.046433 , The best test Accuracy ：0.817568
+2022-11-07 18:30:58.722125 Training:  Epoch 4, Batch: 30, Loss: 0.364802 , The best test Accuracy ：0.817568
+2022-11-07 18:31:02.353120 Training:  Epoch 4, Batch: 40, Loss: 0.114020 , The best test Accuracy ：0.817568
+2022-11-07 18:31:06.853912 Training:  Epoch 4, Batch: 50, Loss: 0.060380 , The best test Accuracy ：0.817568
+2022-11-07 18:31:10.624805 Training:  Epoch 4, Batch: 60, Loss: 0.279086 , The best test Accuracy ：0.817568
+2022-11-07 18:31:15.220086 Training:  Epoch 4, Batch: 70, Loss: 0.061726 , The best test Accuracy ：0.817568
+Test Avg. Loss: 0.623967, correct / total : 111.000000 / 148.000000 , Accuracy: 0.750000
+2022-11-07 18:31:24.308757 Training:  Epoch 5, Batch: 0, Loss: 0.139256 , The best test Accuracy ：0.817568
+2022-11-07 18:31:28.360489 Training:  Epoch 5, Batch: 10, Loss: 0.285967 , The best test Accuracy ：0.817568
+2022-11-07 18:31:32.945894 Training:  Epoch 5, Batch: 20, Loss: 0.019137 , The best test Accuracy ：0.817568
+2022-11-07 18:31:37.678414 Training:  Epoch 5, Batch: 30, Loss: 0.089388 , The best test Accuracy ：0.817568
+2022-11-07 18:31:42.101815 Training:  Epoch 5, Batch: 40, Loss: 0.483831 , The best test Accuracy ：0.817568
+2022-11-07 18:31:46.581089 Training:  Epoch 5, Batch: 50, Loss: 0.008232 , The best test Accuracy ：0.817568
+2022-11-07 18:31:52.123635 Training:  Epoch 5, Batch: 60, Loss: 0.061467 , The best test Accuracy ：0.817568
+2022-11-07 18:31:55.940726 Training:  Epoch 5, Batch: 70, Loss: 0.047322 , The best test Accuracy ：0.817568
+Test Avg. Loss: 0.505761, correct / total : 123.000000 / 148.000000 , Accuracy: 0.831081
+2022-11-07 18:32:03.674130 Training:  Epoch 6, Batch: 0, Loss: 0.021064 , The best test Accuracy ：0.831081

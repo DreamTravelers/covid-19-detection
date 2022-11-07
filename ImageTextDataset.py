@@ -14,7 +14,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
 from transformers import BertTokenizer
-import  transformers as tfs
+
 
 class ImageDataset(Dataset):
     def __init__(self, files, process, size):
@@ -48,10 +48,10 @@ class ImageDataset(Dataset):
         img = self.transform(img)
 
         text_idx = self.tokenizer(desc, max_length=self.max_len, add_special_tokens=False
-                       , truncation=True, padding='max_length',
-                       return_tensors='pt')
+                                  , truncation=True, padding='max_length',
+                                  return_tensors='pt')
 
-        return img, torch.from_numpy(np.array(int(label))).float(),text_idx['input_ids']
+        return img, torch.from_numpy(np.array(int(label))).float(), text_idx['input_ids']
 
     def __len__(self):
         return len(self.imgs)
@@ -96,7 +96,7 @@ def get_train_transform(size=0):
     train_transform = transforms.Compose([
         # Resize((int(size * (256 / 224)), int(size * (256 / 224)))),
         # transforms.RandomHorizontalFlip(),
-        transforms.RandomRotation(90,interpolation=False,expand=False,center=None,fill=None),
+        transforms.RandomRotation(90, interpolation=False, expand=False, center=None, fill=None),
         transforms.RandomVerticalFlip(p=0.5),
         transforms.RandomHorizontalFlip(p=0.5),
         # transforms.Resize()
@@ -112,4 +112,3 @@ def get_test_transform(size=0):
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010]),
     ])
-

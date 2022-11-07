@@ -6,10 +6,6 @@
 
 """
 from datetime import datetime
-from math import sqrt
-
-import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error
 from torch import nn
 
 
@@ -23,7 +19,7 @@ def train(model, _train, optimizer, epoch, acc, device, save_result, st):
 
         optimizer.zero_grad()
 
-        output = model(train_img, desc.squeeze(1))
+        output = model(desc)
 
         loss = criterion(output[0].to(device), train_label.long().to(device))
 
@@ -49,7 +45,7 @@ def test(model, test_loader, device, save_result, st):
     count = 0
     avg_loss = 0.0
     for i, (images, labels, desc) in enumerate(test_loader):
-        output = model(images.to(device), desc.squeeze())
+        output = model(desc)[0]
         avg_loss += criterion(output.detach().cpu(), labels.long().detach().cpu()).sum()
         pred = output.detach().argmax(1)
         total_correct += pred.eq(labels.to(device).view_as(pred.to(device))).sum()
